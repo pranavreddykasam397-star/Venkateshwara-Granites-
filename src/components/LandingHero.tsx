@@ -24,7 +24,7 @@ export default function LandingHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center pb-28 sm:pb-32 md:pb-40 overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pt-28 md:pt-36 pb-28 sm:pb-32 md:pb-40 overflow-hidden"
       style={{ perspective: '1200px' }}
     >
       {/* Animated background layers */}
