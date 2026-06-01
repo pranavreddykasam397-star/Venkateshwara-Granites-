@@ -1,0 +1,588 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700;800&family=Outfit:wght@300;400;500;600;700&display=swap");
+@import "tailwindcss";
+
+@theme inline {
+  /* ── Color Tokens ── */
+  --color-background: oklch(0.985 0.002 90);
+  --color-foreground: oklch(0.16 0.005 270);
+  --color-card: oklch(1 0 0);
+  --color-primary: oklch(0.16 0.005 270);
+  --color-primary-foreground: oklch(0.98 0 0);
+  --color-secondary: oklch(0.96 0.003 90);
+  --color-muted: oklch(0.95 0.003 90);
+  --color-muted-foreground: oklch(0.45 0.008 270);
+  --color-accent: oklch(0.70 0.10 80);
+  --color-border: oklch(0.90 0.004 90);
+  --color-input: oklch(0.92 0.004 90);
+  --color-ring: oklch(0.16 0.005 270);
+  --color-gold: oklch(0.68 0.10 80);
+  --color-quartz: oklch(0.92 0.004 90);
+  --color-slate-stone: oklch(0.30 0.005 270);
+
+  /* ── Font Families ── */
+  --font-display: "Cinzel", serif;
+  --font-body: "Outfit", system-ui, sans-serif;
+
+  /* ── Radius ── */
+  --radius: 0.25rem;
+}
+
+:root {
+  --background: oklch(0.985 0.002 90);
+  --foreground: oklch(0.16 0.005 270);
+  --card: oklch(1 0 0);
+  --primary: oklch(0.16 0.005 270);
+  --primary-foreground: oklch(0.98 0 0);
+  --secondary: oklch(0.96 0.003 90);
+  --muted: oklch(0.95 0.003 90);
+  --muted-foreground: oklch(0.45 0.008 270);
+  --accent: oklch(0.70 0.10 80);
+  --border: oklch(0.90 0.004 90);
+  --input: oklch(0.92 0.004 90);
+  --ring: oklch(0.16 0.005 270);
+  --gold: oklch(0.68 0.10 80);
+  --quartz: oklch(0.92 0.004 90);
+  --slate-stone: oklch(0.30 0.005 270);
+
+  /* ── Gradients ── */
+  --gradient-stone: linear-gradient(180deg, oklch(0.985 0.002 90) 0%, oklch(0.95 0.003 90) 100%);
+  --gradient-ink: linear-gradient(180deg, oklch(0.18 0.005 270) 0%, oklch(0.10 0.005 270) 100%);
+  --gradient-gold: linear-gradient(135deg, oklch(0.78 0.11 85) 0%, oklch(0.58 0.09 75) 100%);
+
+  /* ── Shadows ── */
+  --shadow-slab: 0 30px 60px -25px oklch(0.16 0.005 270 / 0.18), 0 8px 20px -10px oklch(0.16 0.005 270 / 0.10);
+  --shadow-card: 0 20px 40px -18px oklch(0.16 0.005 270 / 0.15);
+  --shadow-gold: 0 12px 30px -12px oklch(0.68 0.10 80 / 0.40);
+}
+
+/* ── Base Reset ── */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+html, body, #root {
+  min-height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--foreground);
+  font-family: var(--font-body);
+  font-feature-settings: "ss01", "cv11";
+  background-color: var(--background);
+  overflow-x: hidden;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* ── 3D Card Utilities ── */
+.backface-hidden {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+.group:hover .group-hover-rotate-y-180 {
+  transform: rotateY(180deg);
+}
+
+
+/* ── Glass Stone Utility ── */
+.glass-stone {
+  background: color-mix(in oklab, var(--card) 70%, transparent);
+  backdrop-filter: blur(18px) saturate(140%);
+  border: 1px solid color-mix(in oklab, var(--foreground) 8%, transparent);
+}
+
+/* ── Gold Text Gradient ── */
+.text-gold {
+  background: var(--gradient-gold);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  color: transparent;
+}
+
+/* ── Grain Texture Overlay ── */
+.grain {
+  position: relative;
+}
+
+.grain::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.3;
+  background-image: radial-gradient(circle at 1px 1px, oklch(0.16 0.005 270 / 0.12) 1px, transparent 0);
+  background-size: 24px 24px;
+  z-index: 1;
+}
+
+/* ── Shimmer Gold ── */
+.shimmer-gold {
+  background: linear-gradient(
+    110deg,
+    oklch(0.78 0.11 85 / 0) 0%,
+    oklch(0.78 0.11 85 / 0.4) 40%,
+    oklch(0.78 0.11 85 / 0) 60%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 2.5s linear infinite;
+}
+
+@keyframes shimmer {
+  0% { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+/* ── Float Up Entrance ── */
+.animate-float-up {
+  animation: float-up 0.8s ease-out both;
+}
+
+@keyframes float-up {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* ── Spin Slow ── */
+.animate-spin-slow {
+  animation: spin 60s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotateZ(0deg); }
+  to   { transform: rotateZ(360deg); }
+}
+
+/* ── Spin Reverse ── */
+.animate-spin-reverse {
+  animation: spin-reverse 90s linear infinite;
+}
+
+@keyframes spin-reverse {
+  from { transform: rotateZ(360deg); }
+  to   { transform: rotateZ(0deg); }
+}
+
+/* ── Parallax Float ── */
+.animate-parallax-float {
+  animation: parallax-float 8s ease-in-out infinite;
+}
+
+@keyframes parallax-float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ── 3D Utilities ── */
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.perspective-1200 {
+  perspective: 1200px;
+}
+
+/* ── Custom Selection ── */
+::selection {
+  background: oklch(0.70 0.10 80 / 0.20);
+}
+
+/* ═══════════════════════════════════════════
+   Landing Page — RVR Group 3D Animations
+   ═══════════════════════════════════════════ */
+
+/* ── Radial Pulse Background ── */
+.landing-radial-pulse {
+  background:
+    radial-gradient(ellipse 60% 50% at 50% 50%, oklch(0.68 0.10 80 / 0.06) 0%, transparent 70%),
+    radial-gradient(ellipse 40% 35% at 30% 60%, oklch(0.70 0.10 80 / 0.04) 0%, transparent 60%),
+    radial-gradient(ellipse 35% 40% at 70% 40%, oklch(0.78 0.11 85 / 0.03) 0%, transparent 60%);
+  animation: radial-breathe 8s ease-in-out infinite;
+}
+
+@keyframes radial-breathe {
+  0%, 100% { opacity: 0.6; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
+/* ── Deity Logo (Lord Venkateshwara) ── */
+.deity-logo-container {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (min-width: 768px) {
+  .deity-logo-container {
+    width: 180px;
+    height: 180px;
+  }
+}
+
+.deity-logo-glow {
+  position: absolute;
+  inset: -12px;
+  border-radius: 50%;
+  background: radial-gradient(circle, oklch(0.68 0.10 80 / 0.20) 0%, transparent 70%);
+  animation: deity-glow-pulse 3s ease-in-out infinite;
+}
+
+.deity-logo-ring {
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1.5px solid oklch(0.68 0.10 80 / 0.25);
+  border-top-color: oklch(0.78 0.11 85 / 0.5);
+  border-right-color: oklch(0.78 0.11 85 / 0.1);
+  animation: deity-ring-spin 12s linear infinite;
+}
+
+.deity-logo-img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 3px solid oklch(0.68 0.10 80 / 0.40);
+  box-shadow:
+    0 0 30px oklch(0.68 0.10 80 / 0.12),
+    0 8px 25px -8px oklch(0.16 0.005 270 / 0.20);
+  position: relative;
+  z-index: 2;
+}
+
+@keyframes deity-glow-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.6; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+@keyframes deity-ring-spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* ── Floating 3D Geometric Shapes ── */
+.landing-shape {
+  position: absolute;
+  border: 1px solid;
+  border-radius: 4px;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.landing-shape-1 {
+  top: 12%;
+  left: 8%;
+  width: 80px;
+  height: 80px;
+  border-color: oklch(0.68 0.10 80 / 0.15);
+  background: oklch(0.68 0.10 80 / 0.03);
+  animation: shape-float-1 12s ease-in-out infinite;
+}
+
+.landing-shape-2 {
+  top: 18%;
+  right: 12%;
+  width: 60px;
+  height: 60px;
+  border-color: oklch(0.90 0.004 90 / 0.25);
+  background: oklch(0.90 0.004 90 / 0.04);
+  border-radius: 50%;
+  animation: shape-float-2 15s ease-in-out infinite;
+}
+
+.landing-shape-3 {
+  bottom: 20%;
+  left: 15%;
+  width: 100px;
+  height: 100px;
+  border-color: oklch(0.68 0.10 80 / 0.10);
+  background: oklch(0.68 0.10 80 / 0.02);
+  border-radius: 2px;
+  animation: shape-float-3 18s ease-in-out infinite;
+}
+
+.landing-shape-4 {
+  bottom: 25%;
+  right: 10%;
+  width: 50px;
+  height: 50px;
+  border-color: oklch(0.90 0.004 90 / 0.20);
+  background: oklch(0.90 0.004 90 / 0.03);
+  border-radius: 50%;
+  animation: shape-float-4 10s ease-in-out infinite;
+}
+
+@keyframes shape-float-1 {
+  0%, 100% { transform: translateY(0) rotateZ(0deg); }
+  25% { transform: translateY(-20px) rotateZ(15deg); }
+  50% { transform: translateY(-8px) rotateZ(0deg); }
+  75% { transform: translateY(-25px) rotateZ(-10deg); }
+}
+
+@keyframes shape-float-2 {
+  0%, 100% { transform: translateY(0) rotateZ(0deg); }
+  33% { transform: translateY(-30px) rotateZ(20deg); }
+  66% { transform: translateY(-10px) rotateZ(-15deg); }
+}
+
+@keyframes shape-float-3 {
+  0%, 100% { transform: translateY(0) rotateZ(0deg); }
+  50% { transform: translateY(-18px) rotateZ(8deg); }
+}
+
+@keyframes shape-float-4 {
+  0%, 100% { transform: translateY(0) rotateZ(0deg) scale(1); }
+  50% { transform: translateY(-22px) rotateZ(-12deg) scale(1.1); }
+}
+
+/* ── Staggered Entrance Animations ── */
+.landing-fade-in-1 { animation: landing-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.2s both; }
+.landing-fade-in-2 { animation: landing-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.5s both; }
+.landing-fade-in-3 { animation: landing-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 0.8s both; }
+.landing-fade-in-4 { animation: landing-fade-up 1s cubic-bezier(0.16, 1, 0.3, 1) 1.1s both; }
+
+@keyframes landing-fade-up {
+  from {
+    opacity: 0;
+    transform: translateY(40px) rotateX(8deg);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) rotateX(0deg);
+  }
+}
+
+/* ── Title line stagger ── */
+.landing-title-line-1 {
+  animation: title-line-enter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.4s both;
+}
+
+.landing-title-line-2 {
+  animation: title-line-enter 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.65s both;
+}
+
+@keyframes title-line-enter {
+  from {
+    opacity: 0;
+    transform: translateY(60px) translateZ(-80px) rotateX(15deg);
+    filter: blur(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+/* ── Scroll Indicator ── */
+.landing-scroll-indicator {
+  width: 24px;
+  height: 40px;
+  border: 2px solid oklch(0.68 0.10 80 / 0.30);
+  border-radius: 12px;
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding-top: 6px;
+}
+
+.landing-scroll-dot {
+  width: 4px;
+  height: 8px;
+  border-radius: 2px;
+  background: var(--gradient-gold);
+  animation: scroll-dot-bounce 2s ease-in-out infinite;
+}
+
+@keyframes scroll-dot-bounce {
+  0%, 100% { transform: translateY(0); opacity: 1; }
+  50% { transform: translateY(14px); opacity: 0.3; }
+}
+
+/* ── Slide-in Drawer Animation (Products Cart) ── */
+.animate-slide-in {
+  animation: slide-in-right 0.35s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.25s ease-out both;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* ── Scroll-triggered section reveal ── */
+.scroll-reveal {
+  will-change: transform, opacity;
+}
+
+/* ═══════════════════════════════════════════
+   Granite Block Floating Animations
+   ═══════════════════════════════════════════ */
+
+.granite-block-float {
+  will-change: transform, opacity;
+  transition: none;
+  transform-style: preserve-3d;
+}
+
+.granite-block-float img {
+  box-shadow:
+    0 15px 35px -10px oklch(0.16 0.005 270 / 0.20),
+    0 5px 15px -5px oklch(0.16 0.005 270 / 0.10);
+  transition: filter 0.3s ease;
+}
+
+/* ═══════════════════════════════════════════
+   Navigation Button 3D Animations
+   ═══════════════════════════════════════════ */
+
+/* Button base with 3D transform support */
+.nav-btn {
+  transform-style: preserve-3d;
+  will-change: transform, box-shadow;
+}
+
+.nav-btn:hover {
+  box-shadow:
+    0 20px 40px -20px oklch(0.16 0.005 270 / 0.12),
+    0 0 0 1px oklch(0.68 0.10 80 / 0.08);
+}
+
+/* Button 3D exit animation when clicked */
+.nav-btn-exit {
+  animation: nav-btn-3d-exit 0.7s cubic-bezier(0.7, 0, 0.84, 0) forwards !important;
+  pointer-events: none;
+}
+
+@keyframes nav-btn-3d-exit {
+  0% {
+    transform: scale(1) rotateX(0deg) rotateY(0deg) translateZ(0);
+    opacity: 1;
+    filter: blur(0);
+  }
+  25% {
+    transform: scale(1.04) rotateX(-2deg) rotateY(1deg) translateZ(30px);
+    opacity: 1;
+    filter: blur(0);
+  }
+  60% {
+    transform: scale(1.15) rotateX(0deg) rotateY(0deg) translateZ(80px);
+    opacity: 0.8;
+    filter: blur(1px);
+  }
+  100% {
+    transform: scale(2) rotateX(8deg) rotateY(0deg) translateZ(200px);
+    opacity: 0;
+    filter: blur(12px);
+  }
+}
+
+/* Section background floating particles */
+.section-particle {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  will-change: transform;
+}
+
+.section-particle-1 {
+  top: 15%;
+  left: 10%;
+  width: 6px;
+  height: 6px;
+  background: oklch(0.68 0.10 80 / 0.20);
+  box-shadow: 0 0 20px 4px oklch(0.68 0.10 80 / 0.08);
+  animation: particle-drift-1 20s ease-in-out infinite;
+}
+
+.section-particle-2 {
+  top: 60%;
+  right: 15%;
+  width: 4px;
+  height: 4px;
+  background: oklch(0.68 0.10 80 / 0.15);
+  box-shadow: 0 0 15px 3px oklch(0.68 0.10 80 / 0.06);
+  animation: particle-drift-2 25s ease-in-out infinite;
+}
+
+.section-particle-3 {
+  bottom: 20%;
+  left: 25%;
+  width: 5px;
+  height: 5px;
+  background: oklch(0.90 0.004 90 / 0.30);
+  box-shadow: 0 0 18px 4px oklch(0.90 0.004 90 / 0.10);
+  animation: particle-drift-3 18s ease-in-out infinite;
+}
+
+@keyframes particle-drift-1 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  25% { transform: translate(80px, -40px) scale(1.3); }
+  50% { transform: translate(40px, 60px) scale(0.8); }
+  75% { transform: translate(-30px, 20px) scale(1.1); }
+}
+
+@keyframes particle-drift-2 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  33% { transform: translate(-60px, -50px) scale(1.4); }
+  66% { transform: translate(40px, 30px) scale(0.7); }
+}
+
+@keyframes particle-drift-3 {
+  0%, 100% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(50px, -70px) scale(1.2); }
+}
+
+/* Page entrance animation — 3D depth entrance */
+main {
+  animation: page-enter-3d 0.6s cubic-bezier(0.16, 1, 0.3, 1) both;
+}
+
+@keyframes page-enter-3d {
+  from {
+    opacity: 0;
+    transform: translateY(30px) translateZ(-50px) scale(0.96) rotateX(2deg);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) translateZ(0) scale(1) rotateX(0deg);
+    filter: blur(0);
+  }
+}
+
+
+
