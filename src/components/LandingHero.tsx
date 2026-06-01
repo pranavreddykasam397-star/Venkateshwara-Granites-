@@ -24,7 +24,7 @@ export default function LandingHero() {
   return (
     <section
       ref={sectionRef}
-      className="relative min-h-screen flex items-center justify-center overflow-hidden"
+      className="relative min-h-screen flex items-center justify-center pb-28 sm:pb-32 md:pb-40 overflow-hidden"
       style={{ perspective: '1200px' }}
     >
       {/* Animated background layers */}
@@ -140,7 +140,7 @@ export default function LandingHero() {
         </div>
 
         {/* Divisions preview */}
-        <div className="landing-fade-in-4 mt-14 flex flex-wrap justify-center gap-6 md:gap-10">
+        <div className="landing-fade-in-4 mt-10 md:mt-14 flex flex-wrap justify-center gap-6 md:gap-10">
           {[
             { label: 'Quarries', sub: 'Black Granite · Tan Brown' },
             { label: 'Factory', sub: 'CNC Fabrication' },
