@@ -93,8 +93,8 @@ export default function LandingHero() {
         }}
       >
         {/* Deity Logo — Lord Venkateshwara */}
-        <div className="landing-fade-in-1 flex justify-center mb-8">
-          <div className="deity-logo-container">
+        <div className="landing-fade-in-1 flex justify-center mb-6">
+          <div className="deity-logo-container" style={{ width: '100px', height: '100px' }}>
             {/* Outer glow ring */}
             <div className="deity-logo-glow" />
             {/* Logo image — full crest */}
@@ -109,24 +109,31 @@ export default function LandingHero() {
 
         {/* Eyebrow */}
         <div className="landing-fade-in-2">
-          <p className="text-[10px] uppercase tracking-[0.6em] text-muted-foreground mb-8 flex items-center justify-center gap-4">
+          <p className="text-[10px] uppercase tracking-[0.6em] text-muted-foreground mb-6 flex items-center justify-center gap-4">
             <span className="h-px w-16 bg-border block" />
             Established 1997
             <span className="h-px w-16 bg-border block" />
           </p>
         </div>
 
-        {/* Main title with 3D entrance */}
+        {/* Main title — RVR Group (smaller) */}
         <div className="landing-fade-in-2 preserve-3d">
-          <h1 className="font-display text-7xl sm:text-8xl md:text-9xl lg:text-[10rem] font-bold tracking-tight leading-[0.85]">
+          <h1 className="font-display text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold tracking-tight leading-[0.85]">
             <span className="block landing-title-line-1">RVR</span>
             <span className="block text-gold italic landing-title-line-2">Group</span>
           </h1>
         </div>
 
+        {/* Venkateshwara Granites — below RVR Group */}
+        <div className="landing-fade-in-3 mt-6">
+          <h2 className="font-display text-2xl sm:text-3xl md:text-4xl font-bold tracking-wide uppercase">
+            Venkateshwara <span className="text-gold italic">Granites</span>
+          </h2>
+        </div>
+
         {/* Subtitle */}
         <div className="landing-fade-in-3">
-          <p className="text-muted-foreground mt-10 text-base sm:text-lg md:text-xl max-w-xl mx-auto leading-relaxed font-light">
+          <p className="text-muted-foreground mt-6 text-sm sm:text-base md:text-lg max-w-xl mx-auto leading-relaxed font-light">
             A diversified enterprise in natural stone — from quarry to architecture.
             Granite blocks, slabs, and precision fabrication.
           </p>
