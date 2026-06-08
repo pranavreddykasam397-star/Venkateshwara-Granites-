@@ -5,10 +5,10 @@ import GalleryGrid from '../components/GalleryGrid'
 export const Route = createFileRoute('/gallery')({
   head: () => ({
     meta: [
-      { title: 'Project Gallery — Venkateshwara Granites' },
-      { name: 'description', content: 'Browse our portfolio of completed granite installations — kitchens, bathrooms, and bespoke surfaces.' },
-      { property: 'og:title', content: 'Project Gallery — Venkateshwara Granites' },
-      { property: 'og:description', content: 'Selected works from our portfolio of premium granite installations.' },
+      { title: 'Gallery & Operations — RVR Group · Venkateshwara Granites' },
+      { name: 'description', content: 'Explore our quarry extraction, advanced site operations, and premium finished installations. Raw blocks to architectural-grade granite.' },
+      { property: 'og:title', content: 'Gallery & Operations — RVR Group · Venkateshwara Granites' },
+      { property: 'og:description', content: 'Explore our quarry extraction, advanced site operations, and premium finished installations.' },
     ],
   }),
   component: GalleryPage,
@@ -18,11 +18,11 @@ function GalleryPage() {
   return (
     <>
       <PageHeader
-        eyebrow="Portfolio"
-        title="Selected"
-        accent="work."
+        eyebrow="Quarry & Portfolio"
+        title="Extraction &"
+        accent="Creation."
       >
-        A curated selection of our recent installations across London's finest residences and commercial spaces.
+        From our state-of-the-art quarries in Warangal to final architectural installations, witness the lifecycle of our premium natural stone.
       </PageHeader>
       <GalleryGrid />
     </>

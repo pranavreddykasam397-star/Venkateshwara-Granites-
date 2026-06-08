@@ -51,12 +51,6 @@ export default function Nav() {
 
         {/* CTA + Mobile Toggle */}
         <div className="flex items-center gap-4">
-          <Link
-            to="/quote"
-            className="border border-border bg-primary/10 px-6 py-2.5 rounded-[var(--radius)] text-xs uppercase tracking-[0.18em] font-semibold text-foreground hover:bg-primary hover:text-primary-foreground hover:shadow-[var(--shadow-gold)] transition-all duration-300 no-underline"
-          >
-            Get a Quote
-          </Link>
           {/* Mobile hamburger */}
           <button
             className="md:hidden flex flex-col gap-1.5 p-2"
